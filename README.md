@@ -1,10 +1,20 @@
+<div align="center">
+
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vedatunlu/eventor-core.svg)](https://central.sonatype.com/artifact/io.github.vedatunlu/eventor-core)
+![Build](https://github.com/vedatunlu/eventor/actions/workflows/build.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+</div>
+
 # Eventor - Spring Event Generator
 
-Eventor is a powerful Maven package that generates Spring Event DTOs, Producers, and Consumers from JSON definitions. It works both as a CLI tool and as a Maven plugin for seamless integration into **Spring Boot 3+** projects.
+Eventor is a powerful Maven package that generates Spring Event DTOs, Producers, and Consumers from JSON definitions. It
+works both as a CLI tool and as a Maven plugin for seamless integration into **Spring Boot 3+** projects.
 
 ## ✨ Spring Boot 3+ Compatibility
 
 This package is fully compatible with Spring Boot 3.0+ and includes:
+
 - Support for Jakarta EE (jakarta.* packages)
 - Spring Framework 6.0+ compatibility
 - Java 17+ support
@@ -21,6 +31,7 @@ This package is fully compatible with Spring Boot 3.0+ and includes:
 ## Maven Coordinates
 
 ```xml
+
 <groupId>io.github.vedatunlu</groupId>
 <artifactId>eventor-maven-plugin</artifactId>
 <version>0.2.0</version>
@@ -33,47 +44,48 @@ This package is fully compatible with Spring Boot 3.0+ and includes:
 Add this to your `pom.xml`:
 
 ```xml
-<build>
-    <plugins>
-        <!-- Eventor Plugin -->
-        <plugin>
-            <groupId>io.github.vedatunlu</groupId>
-            <artifactId>eventor-maven-plugin</artifactId>
-            <version>0.2.0</version>
-            <configuration>
-                <jsonDir>${project.basedir}/src/main/resources/eventor</jsonDir>
-                <outputDir>${project.build.directory}/generated-sources/eventor</outputDir>
-            </configuration>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
 
-        <!-- Add Generated Sources to Build Path -->
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>3.4.0</version>
-            <executions>
-                <execution>
-                    <id>add-source</id>
-                    <phase>generate-sources</phase>
-                    <goals>
-                        <goal>add-source</goal>
-                    </goals>
-                    <configuration>
-                        <sources>
-                            <source>${project.build.directory}/generated-sources/eventor</source>
-                        </sources>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
+<build>
+  <plugins>
+    <!-- Eventor Plugin -->
+    <plugin>
+      <groupId>io.github.vedatunlu</groupId>
+      <artifactId>eventor-maven-plugin</artifactId>
+      <version>0.2.0</version>
+      <configuration>
+        <jsonDir>${project.basedir}/src/main/resources/eventor</jsonDir>
+        <outputDir>${project.build.directory}/generated-sources/eventor</outputDir>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>generate</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+
+    <!-- Add Generated Sources to Build Path -->
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>build-helper-maven-plugin</artifactId>
+      <version>3.4.0</version>
+      <executions>
+        <execution>
+          <id>add-source</id>
+          <phase>generate-sources</phase>
+          <goals>
+            <goal>add-source</goal>
+          </goals>
+          <configuration>
+            <sources>
+              <source>${project.build.directory}/generated-sources/eventor</source>
+            </sources>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
 </build>
 ```
 
@@ -82,23 +94,24 @@ Add this to your `pom.xml`:
 Make sure your project uses Spring Boot 3+ parent:
 
 ```xml
+
 <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.0</version> <!-- or any 3.x version -->
-    <relativePath/>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-parent</artifactId>
+  <version>3.2.0</version> <!-- or any 3.x version -->
+  <relativePath/>
 </parent>
 
 <dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.kafka</groupId>
-        <artifactId>spring-kafka</artifactId>
-    </dependency>
-    <!-- Other Spring Boot 3+ dependencies -->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.kafka</groupId>
+  <artifactId>spring-kafka</artifactId>
+</dependency>
+<!-- Other Spring Boot 3+ dependencies -->
 </dependencies>
 ```
 
@@ -107,6 +120,7 @@ Make sure your project uses Spring Boot 3+ parent:
 Create the directory `src/main/resources/eventor/` and add your JSON files:
 
 **DTO Definition (`user-event.json`):**
+
 ```json
 {
   "type": "dto",
@@ -121,9 +135,10 @@ Create the directory `src/main/resources/eventor/` and add your JSON files:
 ```
 
 **Producer Definition (`user-producer.json`):**
+
 ```json
 {
-  "type": "producer", 
+  "type": "producer",
   "name": "UserEventProducer",
   "dto": "UserCreatedEvent",
   "topic": "user-events",
@@ -132,22 +147,25 @@ Create the directory `src/main/resources/eventor/` and add your JSON files:
 ```
 
 **Consumer Definition (`user-consumer.json`):**
+
 ```json
 {
   "type": "consumer",
-  "name": "UserEventListener", 
+  "name": "UserEventListener",
   "methods": [
     {
       "methodName": "handleUserCreatedEvent",
-      "dto": "UserCreatedEvent", 
+      "dto": "UserCreatedEvent",
       "topic": "user-events",
       "groupId": "user-service-group",
       "listenerFactory": "kafkaListenerContainerFactory",
       "dependencies": [
         {
           "beanName": "userService",
-          "type": "com.example.service.UserService", 
-          "methodCalls": ["processNewUser"]
+          "type": "com.example.service.UserService",
+          "methodCalls": [
+            "processNewUser"
+          ]
         }
       ]
     }
@@ -162,6 +180,7 @@ mvn clean compile
 ```
 
 The plugin will automatically:
+
 1. Generate DTO, Producer, and Consumer classes
 2. Add them to your compilation path
 3. Make them available as Spring components
@@ -177,6 +196,7 @@ The plugin will automatically:
 ### As Maven Plugin
 
 Run the generation:
+
 ```bash
 mvn eventor:generate
 ```
@@ -184,6 +204,7 @@ mvn eventor:generate
 ### As CLI Tool
 
 Download the CLI JAR and run:
+
 ```bash
 java -jar eventor-0.2.0-cli.jar --jsonDir ./json-definitions --outputDir ./generated-sources
 ```
@@ -235,7 +256,9 @@ java -jar eventor-0.2.0-cli.jar --jsonDir ./json-definitions --outputDir ./gener
         {
           "beanName": "orderService",
           "type": "com.example.service.OrderService",
-          "methodCalls": ["processOrder"]
+          "methodCalls": [
+            "processOrder"
+          ]
         }
       ]
     }
@@ -246,6 +269,7 @@ java -jar eventor-0.2.0-cli.jar --jsonDir ./json-definitions --outputDir ./gener
 ## Generated Code Examples
 
 ### Generated DTO (Spring Boot 3+ Compatible)
+
 ```java
 package com.example.dto;
 
@@ -258,17 +282,18 @@ import java.time.LocalDateTime;
  * Compatible with Spring Boot 3+
  */
 public class UserCreatedEvent {
-    private UUID userId;
-    private String username;
-    private String email;
-    private LocalDateTime createdAt;
-    
-    // Constructors, getters, setters, equals, hashCode, toString
-    // ...
+  private UUID userId;
+  private String username;
+  private String email;
+  private LocalDateTime createdAt;
+
+  // Constructors, getters, setters, equals, hashCode, toString
+  // ...
 }
 ```
 
 ### Generated Producer (Spring Boot 3+ Compatible)
+
 ```java
 package com.example.producer;
 
@@ -283,20 +308,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserEventProducer {
-    private final KafkaTemplate<String, UserCreatedEvent> kafkaTemplate;
-    
-    @Autowired
-    public UserEventProducer(KafkaTemplate<String, UserCreatedEvent> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
-    }
-    
-    public void sendUserCreatedEvent(UserCreatedEvent event) {
-        kafkaTemplate.send("user-events", event);
-    }
+  private final KafkaTemplate<String, UserCreatedEvent> kafkaTemplate;
+
+  @Autowired
+  public UserEventProducer(KafkaTemplate<String, UserCreatedEvent> kafkaTemplate) {
+    this.kafkaTemplate = kafkaTemplate;
+  }
+
+  public void sendUserCreatedEvent(UserCreatedEvent event) {
+    kafkaTemplate.send("user-events", event);
+  }
 }
 ```
 
 ### Generated Consumer (Spring Boot 3+ Compatible)
+
 ```java
 package com.example.consumer;
 
@@ -312,21 +338,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class UserEventListener {
-    private final UserService userService;
-    
-    @Autowired
-    public UserEventListener(UserService userService) {
-        this.userService = userService;
-    }
-    
-    @KafkaListener(
-        topics = "user-events",
-        groupId = "user-service-group",
-        containerFactory = "kafkaListenerContainerFactory"
-    )
-    public void handleUserCreatedEvent(UserCreatedEvent event) {
-        userService.processNewUser(event);
-    }
+  private final UserService userService;
+
+  @Autowired
+  public UserEventListener(UserService userService) {
+    this.userService = userService;
+  }
+
+  @KafkaListener(
+    topics = "user-events",
+    groupId = "user-service-group",
+    containerFactory = "kafkaListenerContainerFactory"
+  )
+  public void handleUserCreatedEvent(UserCreatedEvent event) {
+    userService.processNewUser(event);
+  }
 }
 ```
 
@@ -335,42 +361,43 @@ public class UserEventListener {
 ### Kafka Configuration Example
 
 ```java
+
 @Configuration
 @EnableKafka
 public class KafkaConfig {
 
-    @Bean
-    public ProducerFactory<String, Object> producerFactory() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(props);
-    }
+  @Bean
+  public ProducerFactory<String, Object> producerFactory() {
+    Map<String, Object> props = new HashMap<>();
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+    return new DefaultKafkaProducerFactory<>(props);
+  }
 
-    @Bean
-    public KafkaTemplate<String, Object> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
-    }
+  @Bean
+  public KafkaTemplate<String, Object> kafkaTemplate() {
+    return new KafkaTemplate<>(producerFactory());
+  }
 
-    @Bean
-    public ConsumerFactory<String, Object> consumerFactory() {
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "default-group");
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
-        return new DefaultKafkaConsumerFactory<>(props);
-    }
+  @Bean
+  public ConsumerFactory<String, Object> consumerFactory() {
+    Map<String, Object> props = new HashMap<>();
+    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    props.put(ConsumerConfig.GROUP_ID_CONFIG, "default-group");
+    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+    props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+    return new DefaultKafkaConsumerFactory<>(props);
+  }
 
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Object> factory = 
-            new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-        return factory;
-    }
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory() {
+    ConcurrentKafkaListenerContainerFactory<String, Object> factory =
+      new ConcurrentKafkaListenerContainerFactory<>();
+    factory.setConsumerFactory(consumerFactory());
+    return factory;
+  }
 }
 ```
 
@@ -390,10 +417,12 @@ mvn clean install
 ## Configuration Parameters
 
 ### Maven Plugin Parameters
+
 - `jsonDir`: Directory containing JSON definition files (default: `${project.basedir}/src/main/resources/eventor`)
 - `outputDir`: Output directory for generated classes (default: `${project.build.directory}/generated-sources/eventor`)
 
 ### CLI Parameters
+
 - `--jsonDir, -j`: Directory containing JSON definition files (required)
 - `--outputDir, -o`: Output directory for generated classes (required)
 
