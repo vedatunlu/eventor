@@ -1,7 +1,7 @@
 #!/bin/bash
-# Eventry Quick Setup Script
+# Eventor Quick Setup Script
 
-echo "🚀 Setting up Eventry Spring Event Generator..."
+echo "🚀 Setting up Eventor Spring Event Generator..."
 
 # Check Java version
 echo "Checking Java version..."
@@ -59,14 +59,14 @@ fi
 
 echo "✅ Prerequisites checked"
 
-# Build and install Eventry
-echo "📦 Building and installing Eventry..."
+# Build and install Eventor
+echo "📦 Building and installing Eventor..."
 echo "This may take a few minutes for the first run..."
 
 mvn clean install -q
 
 if [ $? -eq 0 ]; then
-    echo "✅ Eventry installed successfully!"
+    echo "✅ Eventor installed successfully!"
     echo ""
     echo "🎯 Next steps:"
     echo "1. Add the plugin to your Spring Boot project's pom.xml:"
@@ -76,11 +76,11 @@ if [ $? -eq 0 ]; then
     echo "     <version>0.1.0-SNAPSHOT</version>"
     echo "   </plugin>"
     echo ""
-    echo "2. Create JSON definitions in src/main/resources/eventry/"
+    echo "2. Create JSON definitions in src/main/resources/Eventor/"
     echo "3. Run: mvn clean compile"
     echo ""
-    echo "📖 Full guide: https://github.com/yourorg/eventry/blob/main/SPRING_BOOT_3_INTEGRATION.md"
-    echo "🆘 Troubleshooting: https://github.com/yourorg/eventry/blob/main/TROUBLESHOOTING.md"
+    echo "📖 Full guide: https://github.com/yourorg/Eventor/blob/main/SPRING_BOOT_3_INTEGRATION.md"
+    echo "🆘 Troubleshooting: https://github.com/yourorg/Eventor/blob/main/TROUBLESHOOTING.md"
 else
     echo "❌ Build failed. Check the output above for errors."
     echo "🆘 See TROUBLESHOOTING.md for common build issues"

@@ -1,6 +1,6 @@
-package io.eventor.cli;
+package io.github.vedatunlu.eventor.cli;
 
-import io.eventor.generator.EventryGenerator;
+import io.github.vedatunlu.eventor.core.generator.EventorGenerator;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -8,12 +8,12 @@ import picocli.CommandLine.Option;
 import java.util.concurrent.Callable;
 
 @Command(
-    name = "eventry",
+    name = "Eventor",
     mixinStandardHelpOptions = true,
-    version = "Eventry 0.1.0-SNAPSHOT",
+    version = "Eventor 0.1.0-SNAPSHOT",
     description = "Spring Event Generator - Generate DTOs, Producers, and Consumers from JSON definitions"
 )
-public class EventryCliMain implements Callable<Integer> {
+public class EventorCliMain implements Callable<Integer> {
 
     @Option(
         names = {"--jsonDir", "-j"},
@@ -32,12 +32,12 @@ public class EventryCliMain implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            System.out.println("Eventry Spring Event Generator");
+            System.out.println("Eventor Spring Event Generator");
             System.out.println("JSON Directory: " + jsonDir);
             System.out.println("Output Directory: " + outputDir);
             System.out.println("Generating classes...");
 
-            EventryGenerator generator = new EventryGenerator();
+            EventorGenerator generator = new EventorGenerator();
             generator.generateFromJsonDirectory(jsonDir, outputDir);
 
             System.out.println("Generation completed successfully!");
@@ -50,7 +50,7 @@ public class EventryCliMain implements Callable<Integer> {
     }
 
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new EventryCliMain()).execute(args);
+        int exitCode = new CommandLine(new EventorCliMain()).execute(args);
         System.exit(exitCode);
     }
 }

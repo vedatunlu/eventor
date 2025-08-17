@@ -5,7 +5,7 @@
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.eventor</groupId>
+    <groupId>io.github.vedatunlu</groupId>
     <artifactId>eventor-parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -86,7 +86,7 @@
         <dependencies>
             <!-- Internal Dependencies -->
             <dependency>
-                <groupId>io.eventor</groupId>
+                <groupId>io.github.vedatunlu</groupId>
                 <artifactId>eventor-core</artifactId>
                 <version>${project.version}</version>
             </dependency>

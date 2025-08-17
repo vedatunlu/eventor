@@ -23,7 +23,7 @@ sdk use java 17.0.8-tem
 [ERROR] Plugin io.eventor:eventor:0.1.0-SNAPSHOT not found
 ```
 **Solutions**:
-1. Install Eventry to local repository:
+1. Install Eventor to local repository:
 ```bash
 git clone <repo>
 cd eventor
@@ -153,7 +153,7 @@ java -jar eventor-cli.jar --jsonDir ./events --outputDir ./gen --verbose
 # Use jsonlint to validate syntax
 cat user-event.json | jsonlint
 
-# Validate against Eventry schema
+# Validate against Eventor schema
 ajv validate -s eventor-schema.json -d user-event.json
 ```
 
@@ -183,7 +183,7 @@ Run this script to verify your setup:
 
 ```bash
 #!/bin/bash
-echo "🔍 Eventry Health Check"
+echo "🔍 Eventor Health Check"
 
 # Check Java version
 echo "Java version:"
@@ -193,8 +193,8 @@ java -version 2>&1 | head -1
 echo "Maven version:"
 mvn -version | head -1
 
-# Check if Eventry is installed
-echo "Eventry installation:"
+# Check if Eventor is installed
+echo "Eventor installation:"
 mvn help:describe -DgroupId=io.eventor -DartifactId=eventor -Dversion=0.1.0-SNAPSHOT
 
 # Validate JSON files (if ajv is installed)

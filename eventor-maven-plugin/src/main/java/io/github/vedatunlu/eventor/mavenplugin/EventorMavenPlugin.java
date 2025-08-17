@@ -1,6 +1,6 @@
-package io.eventor.maven;
+package io.github.vedatunlu.eventor.mavenplugin;
 
-import io.eventor.generator.EventryGenerator;
+import io.github.vedatunlu.eventor.core.generator.EventorGenerator;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -11,18 +11,18 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_SOURCES)
-public class EventryMavenPlugin extends AbstractMojo {
+public class EventorMavenPlugin extends AbstractMojo {
 
-    @Parameter(property = "eventry.jsonDir", defaultValue = "${project.basedir}/src/main/resources/eventry")
+    @Parameter(property = "Eventor.jsonDir", defaultValue = "${project.basedir}/src/main/resources/Eventor")
     private File jsonDir;
 
-    @Parameter(property = "eventry.outputDir", defaultValue = "${project.build.directory}/generated-sources/eventry")
+    @Parameter(property = "Eventor.outputDir", defaultValue = "${project.build.directory}/generated-sources/Eventor")
     private File outputDir;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            getLog().info("Eventry Spring Event Generator Maven Plugin");
+            getLog().info("Eventor Spring Event Generator Maven Plugin");
             getLog().info("JSON Directory: " + jsonDir.getAbsolutePath());
             getLog().info("Output Directory: " + outputDir.getAbsolutePath());
 
@@ -37,7 +37,7 @@ public class EventryMavenPlugin extends AbstractMojo {
                 outputDir.mkdirs();
             }
 
-            EventryGenerator generator = new EventryGenerator();
+            EventorGenerator generator = new EventorGenerator();
             generator.generateFromJsonDirectory(jsonDir.getAbsolutePath(), outputDir.getAbsolutePath());
 
             getLog().info("Code generation completed successfully!");

@@ -25,8 +25,8 @@ import static org.junit.jupiter.api.Assertions.*;
     "spring.kafka.consumer.auto-offset-reset=earliest",
     "spring.kafka.consumer.group-id=test-group"
 })
-@DisplayName("Eventry Generated Classes Functionality Tests")
-class EventryGeneratedClassesFunctionalityTest {
+@DisplayName("Eventor Generated Classes Functionality Tests")
+class EventorGeneratedClassesFunctionalityTest {
 
     @Autowired
     private ApplicationContext applicationContext;

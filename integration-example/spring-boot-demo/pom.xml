@@ -13,12 +13,12 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>spring-boot-eventry-demo</artifactId>
+    <artifactId>spring-boot-Eventor-demo</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>Spring Boot Eventry Demo</name>
-    <description>Demo project showing how to integrate Eventry Spring Event Generator</description>
+    <name>Spring Boot Eventor Demo</name>
+    <description>Demo project showing how to integrate Eventor Spring Event Generator</description>
 
     <properties>
         <java.version>17</java.version>
@@ -50,12 +50,12 @@
 
             <!-- Eventor Plugin -->
             <plugin>
-                <groupId>io.eventor</groupId>
+                <groupId>io.github.vedatunlu</groupId>
                 <artifactId>eventor-maven-plugin</artifactId>
                 <version>0.1.0-SNAPSHOT</version>
                 <configuration>
-                    <jsonDir>${project.basedir}/src/main/resources/eventry</jsonDir>
-                    <outputDir>${project.build.directory}/generated-sources/eventry</outputDir>
+                    <jsonDir>${project.basedir}/src/main/resources/eventor</jsonDir>
+                    <outputDir>${project.build.directory}/generated-sources/eventor</outputDir>
                 </configuration>
                 <executions>
                     <execution>
@@ -80,7 +80,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.build.directory}/generated-sources/eventry</source>
+                                <source>${project.build.directory}/generated-sources/eventor</source>
                             </sources>
                         </configuration>
                     </execution>
