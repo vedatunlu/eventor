@@ -1,0 +1,8 @@
+{
+  "type": "producer",
+  "name": "UserEventProducer",
+  "dto": "UserRegisteredEvent",
+  "topic": "user-events",
+  "factoryBean": "kafkaTemplate"
+}
+

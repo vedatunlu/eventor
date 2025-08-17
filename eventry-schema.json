@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Eventry JSON Definitions Schema",
+  "oneOf": [
+    {
+      "title": "DTO Definition",
+      "type": "object",
+      "properties": {
+        "type": { "const": "dto" },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9]*$",
+          "description": "Class name in PascalCase"
+        },
+        "fields": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z][a-zA-Z0-9]*$": {
+              "type": "string",
+              "enum": [
+                "String", "UUID", "BigDecimal", "LocalDateTime",
+                "Integer", "Long", "Double", "Boolean",
+                "List<String>", "List<UUID>", "Map<String,String>"
+              ]
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["type", "name", "fields"],
+      "additionalProperties": false
+    },
+    {
+      "title": "Producer Definition",
+      "type": "object",
+      "properties": {
+        "type": { "const": "producer" },
+        "name": { "type": "string", "pattern": "^[A-Z][a-zA-Z0-9]*$" },
+        "dto": { "type": "string" },
+        "topic": { "type": "string", "minLength": 1 },
+        "factoryBean": { "type": "string", "default": "kafkaTemplate" }
+      },
+      "required": ["type", "name", "dto", "topic", "factoryBean"],
+      "additionalProperties": false
+    },
+    {
+      "title": "Consumer Definition",
+      "type": "object",
+      "properties": {
+        "type": { "const": "consumer" },
+        "name": { "type": "string", "pattern": "^[A-Z][a-zA-Z0-9]*$" },
+        "methods": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "methodName": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9]*$" },
+              "dto": { "type": "string" },
+              "topic": { "type": "string" },
+              "groupId": { "type": "string" },
+              "listenerFactory": { "type": "string" },
+              "dependencies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "beanName": { "type": "string" },
+                    "type": { "type": "string", "pattern": "^[a-zA-Z][a-zA-Z0-9.]*$" },
+                    "methodCalls": {
+                      "type": "array",
+                      "items": { "type": "string" },
+                      "minItems": 1
+                    }
+                  },
+                  "required": ["beanName", "type", "methodCalls"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["methodName", "dto", "topic", "groupId", "listenerFactory"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["type", "name", "methods"],
+      "additionalProperties": false
+    }
+  ]
+}
+

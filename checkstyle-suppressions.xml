@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- Suppress certain checks for generated files -->
+    <suppress checks=".*" files=".*[/\\]target[/\\]generated-sources[/\\].*"/>
+    <suppress checks=".*" files=".*[/\\]target[/\\]generated-test-sources[/\\].*"/>
+
+    <!-- Suppress Javadoc checks for test files -->
+    <suppress checks="JavadocMethod" files=".*Test\.java"/>
+    <suppress checks="JavadocType" files=".*Test\.java"/>
+    <suppress checks="JavadocVariable" files=".*Test\.java"/>
+    <suppress checks="MissingJavadocMethod" files=".*Test\.java"/>
+
+    <!-- Suppress certain checks for DTOs/POJOs -->
+    <suppress checks="HiddenField" files=".*Definition\.java"/>
+    <suppress checks="DesignForExtension" files=".*Definition\.java"/>
+
+    <!-- Suppress utility class constructor check for Spring Boot main classes -->
+    <suppress checks="HideUtilityClassConstructor" files=".*Application\.java"/>
+    <suppress checks="HideUtilityClassConstructor" files=".*Main\.java"/>
+
+    <!-- Allow magic numbers in configuration -->
+    <suppress checks="MagicNumber" files=".*Definition\.java"/>
+    <suppress checks="MagicNumber" files=".*Config\.java"/>
+</suppressions>
