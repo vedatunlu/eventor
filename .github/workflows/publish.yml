@@ -88,48 +88,19 @@ jobs:
     - name: Run tests
       run: mvn clean test
 
+    - name: Test integration example
+      run: |
+        cd integration-example/spring-boot-demo
+        mvn clean compile
+
+    - name: Verify generated code
+      run: |
+        cd integration-example/spring-boot-demo
+        # Check if generated files exist
+        test -f target/generated-sources/eventor/UserRegisteredEvent.java
+        test -f target/generated-sources/eventor/UserEventProducer.java
+        test -f target/generated-sources/eventor/UserEventListener.java
+        echo "✅ All generated files found!"
+
     - name: Deploy to Maven Central
       run: mvn clean deploy -P release --no-transfer-progress
-
-    - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: v${{ steps.version.outputs.VERSION }}
-        name: Release ${{ steps.version.outputs.VERSION }}
-        body: |
-          ## Changes in this Release
-
-          ### Eventor ${{ steps.version.outputs.VERSION }}
-
-          Published to Maven Central:
-          - **Maven Plugin**: `io.github.vedatunlu:eventor-maven-plugin:${{ steps.version.outputs.VERSION }}`
-          - **Core Library**: `io.github.vedatunlu:eventor-core:${{ steps.version.outputs.VERSION }}`
-          - **CLI Tool**: `io.github.vedatunlu:eventor-cli:${{ steps.version.outputs.VERSION }}`
-
-          ### Usage
-
-          Add to your Maven project:
-          ```xml
-          <plugin>
-              <groupId>io.github.vedatunlu</groupId>
-              <artifactId>eventor-maven-plugin</artifactId>
-              <version>${{ steps.version.outputs.VERSION }}</version>
-          </plugin>
-          ```
-
-          Or as a dependency:
-          ```xml
-          <dependency>
-              <groupId>io.github.vedatunlu</groupId>
-              <artifactId>eventor-core</artifactId>
-              <version>${{ steps.version.outputs.VERSION }}</version>
-          </dependency>
-          ```
-
-          ### 🔗 Links
-          - [Maven Central](https://central.sonatype.com/artifact/io.github.vedatunlu/eventor-maven-plugin)
-          - [Documentation](https://github.com/vedatunlu/eventor#readme)
-        draft: false
-        prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
