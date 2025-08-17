@@ -23,7 +23,7 @@ This package is fully compatible with Spring Boot 3.0+ and includes:
 ```xml
 <groupId>io.github.vedatunlu</groupId>
 <artifactId>eventor-maven-plugin</artifactId>
-<version>0.1.0-SNAPSHOT</version>
+<version>0.2.0</version>
 ```
 
 ## 🚀 Quick Start for Spring Boot 3+ Projects
@@ -39,7 +39,7 @@ Add this to your `pom.xml`:
         <plugin>
             <groupId>io.github.vedatunlu</groupId>
             <artifactId>eventor-maven-plugin</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.2.0</version>
             <configuration>
                 <jsonDir>${project.basedir}/src/main/resources/eventor</jsonDir>
                 <outputDir>${project.build.directory}/generated-sources/eventor</outputDir>
@@ -185,7 +185,7 @@ mvn eventor:generate
 
 Download the CLI JAR and run:
 ```bash
-java -jar eventor-0.1.0-SNAPSHOT-cli.jar --jsonDir ./json-definitions --outputDir ./generated-sources
+java -jar eventor-0.2.0-cli.jar --jsonDir ./json-definitions --outputDir ./generated-sources
 ```
 
 ## JSON Definition Formats
