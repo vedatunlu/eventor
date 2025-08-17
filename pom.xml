@@ -219,16 +219,15 @@
                     </executions>
                 </plugin>
 
-                <!-- Nexus Staging Plugin -->
+                <!-- Central Publishing Plugin (for new Sonatype Central) -->
                 <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>0.4.0</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <serverId>central</serverId>
-                        <nexusUrl>https://central.sonatype.com/api/v1/publisher/deployments</nexusUrl>
-                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        <publishingServerId>central</publishingServerId>
+                        <tokenAuth>true</tokenAuth>
                     </configuration>
                 </plugin>
 
@@ -288,8 +287,8 @@
                         <artifactId>maven-gpg-plugin</artifactId>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
                     </plugin>
                 </plugins>
             </build>
