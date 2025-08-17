@@ -17,10 +17,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource(properties = {
     "logging.level.io.eventor=DEBUG"
 })
-@DisplayName("Eventry Generated Files Integration Tests")
-class EventryGeneratedFilesTest {
+@DisplayName("Eventor Generated Files Integration Tests")
+class EventorGeneratedFilesTest {
 
-    private static final String GENERATED_SOURCES_PATH = "target/generated-sources/eventry";
+    private static final String GENERATED_SOURCES_PATH = "target/generated-sources/Eventor";
     private Path generatedSourcesDir;
 
     @BeforeEach
@@ -160,7 +160,7 @@ class EventryGeneratedFilesTest {
         assertTrue(classesDir.exists(), "Classes directory should exist after successful compilation");
 
         // Check that our hand-written classes are compiled
-        assertTrue(new File("target/classes/com/example/SpringBootEventryDemoApplication.class").exists(),
+        assertTrue(new File("target/classes/com/example/SpringBootEventorDemoApplication.class").exists(),
             "Main application class should be compiled");
         assertTrue(new File("target/classes/com/example/service/UserService.class").exists(),
             "UserService should be compiled");
@@ -172,9 +172,9 @@ class EventryGeneratedFilesTest {
     @DisplayName("Should verify JSON source files exist in resources")
     void shouldVerifyJsonSourceFilesExistInResources() {
         String[] expectedJsonFiles = {
-            "src/main/resources/eventry/user-registered-event.json",
-            "src/main/resources/eventry/user-event-producer.json",
-            "src/main/resources/eventry/user-event-consumer.json"
+            "src/main/resources/Eventor/user-registered-event.json",
+            "src/main/resources/Eventor/user-event-producer.json",
+            "src/main/resources/Eventor/user-event-consumer.json"
         };
 
         for (String jsonFile : expectedJsonFiles) {

@@ -1,12 +1,12 @@
-package io.eventor.generator;
+package io.github.vedatunlu.eventor.core.generator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import io.eventor.model.ConsumerDefinition;
-import io.eventor.model.DtoDefinition;
-import io.eventor.model.ProducerDefinition;
+import io.github.vedatunlu.eventor.core.model.ConsumerDefinition;
+import io.github.vedatunlu.eventor.core.model.DtoDefinition;
+import io.github.vedatunlu.eventor.core.model.ProducerDefinition;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,11 +17,11 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EventryGenerator {
+public class EventorGenerator {
     private final ObjectMapper objectMapper;
     private final Configuration freemarkerConfig;
 
-    public EventryGenerator() {
+    public EventorGenerator() {
         this.objectMapper = new ObjectMapper();
         this.freemarkerConfig = new Configuration(Configuration.VERSION_2_3_32);
         this.freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");

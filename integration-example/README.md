@@ -1,17 +1,17 @@
 # Example Spring Boot Integration
 
-This directory contains an example of how to integrate Eventry into a Spring Boot project.
+This directory contains an example of how to integrate Eventor into a Spring Boot project.
 
 ## Project Structure
 
 ```
 spring-boot-example/
-├── pom.xml                          # Spring Boot project with Eventry plugin
-├── src/main/resources/eventry/      # JSON definitions directory
+├── pom.xml                          # Spring Boot project with Eventor plugin
+├── src/main/resources/Eventor/      # JSON definitions directory
 │   ├── user-event.json             # DTO definition
 │   ├── user-producer.json          # Producer definition
 │   └── user-consumer.json          # Consumer definition
-└── target/generated-sources/eventry/ # Generated classes (after build)
+└── target/generated-sources/Eventor/ # Generated classes (after build)
     ├── UserEvent.java
     ├── UserEventProducer.java
     └── UserEventListener.java
@@ -19,7 +19,7 @@ spring-boot-example/
 
 ## Usage Steps
 
-1. **Add Eventry plugin to your pom.xml**:
+1. **Add Eventor plugin to your pom.xml**:
 ```xml
 <plugin>
     <groupId>io.eventor</groupId>
@@ -35,7 +35,7 @@ spring-boot-example/
 </plugin>
 ```
 
-2. **Create JSON definitions** in `src/main/resources/eventry/`
+2. **Create JSON definitions** in `src/main/resources/Eventor/`
 
 3. **Run Maven build**:
 ```bash
@@ -62,7 +62,7 @@ Add the generated sources to your build path by adding this to your pom.xml:
             </goals>
             <configuration>
                 <sources>
-                    <source>${project.build.directory}/generated-sources/eventry</source>
+                    <source>${project.build.directory}/generated-sources/Eventor</source>
                 </sources>
             </configuration>
         </execution>

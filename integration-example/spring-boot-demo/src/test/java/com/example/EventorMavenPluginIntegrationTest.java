@@ -11,8 +11,8 @@ import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Eventry Maven Plugin Integration Tests")
-class EventryMavenPluginIntegrationTest {
+@DisplayName("Eventor Maven Plugin Integration Tests")
+class EventorMavenPluginIntegrationTest {
 
     @TempDir
     Path tempDir;
@@ -27,7 +27,7 @@ class EventryMavenPluginIntegrationTest {
         String pomContent = Files.readString(pomFile.toPath());
 
         assertAll("Maven plugin configuration validation",
-            () -> assertTrue(pomContent.contains("<groupId>io.eventor</groupId>"),
+            () -> assertTrue(pomContent.contains("<groupId>io.github.vedatunlu</groupId>"),
                 "Plugin should have correct groupId"),
             () -> assertTrue(pomContent.contains("<artifactId>eventor-maven-plugin</artifactId>"),
                 "Plugin should have correct artifactId"),
@@ -44,7 +44,7 @@ class EventryMavenPluginIntegrationTest {
     @DisplayName("Should verify JSON source files have correct structure")
     void shouldVerifyJsonSourceFilesHaveCorrectStructure() throws Exception {
         // Verify DTO JSON structure
-        File dtoJson = new File("src/main/resources/eventry/user-registered-event.json");
+        File dtoJson = new File("src/main/resources/Eventor/user-registered-event.json");
         assertTrue(dtoJson.exists(), "DTO JSON file should exist");
 
         String dtoContent = Files.readString(dtoJson.toPath());
@@ -62,7 +62,7 @@ class EventryMavenPluginIntegrationTest {
         );
 
         // Verify Producer JSON structure
-        File producerJson = new File("src/main/resources/eventry/user-event-producer.json");
+        File producerJson = new File("src/main/resources/Eventor/user-event-producer.json");
         assertTrue(producerJson.exists(), "Producer JSON file should exist");
 
         String producerContent = Files.readString(producerJson.toPath());
@@ -80,7 +80,7 @@ class EventryMavenPluginIntegrationTest {
         );
 
         // Verify Consumer JSON structure
-        File consumerJson = new File("src/main/resources/eventry/user-event-consumer.json");
+        File consumerJson = new File("src/main/resources/Eventor/user-event-consumer.json");
         assertTrue(consumerJson.exists(), "Consumer JSON file should exist");
 
         String consumerContent = Files.readString(consumerJson.toPath());
@@ -109,7 +109,7 @@ class EventryMavenPluginIntegrationTest {
                 "Build helper plugin should be configured"),
             () -> assertTrue(pomContent.contains("<goal>add-source</goal>"),
                 "Build helper should have add-source goal"),
-            () -> assertTrue(pomContent.contains("generated-sources/eventry"),
+            () -> assertTrue(pomContent.contains("generated-sources/Eventor"),
                 "Build helper should point to correct generated sources directory")
         );
     }
@@ -123,7 +123,7 @@ class EventryMavenPluginIntegrationTest {
 
         // Note: The actual generated class files would be in the packages, but we can verify
         // the source files were generated which is what led to successful compilation
-        File generatedSourcesDir = new File("target/generated-sources/eventry");
+        File generatedSourcesDir = new File("target/generated-sources/Eventor");
         assertTrue(generatedSourcesDir.exists(), "Generated sources directory should exist");
 
         File[] generatedFiles = generatedSourcesDir.listFiles();
@@ -138,7 +138,7 @@ class EventryMavenPluginIntegrationTest {
         // by checking that all expected directories and files exist
 
         // 1. generate-sources phase should have created generated sources
-        assertTrue(new File("target/generated-sources/eventry").exists(),
+        assertTrue(new File("target/generated-sources/Eventor").exists(),
             "Generate-sources phase should create generated sources directory");
 
         // 2. process-sources phase should have added sources to compilation
@@ -147,7 +147,7 @@ class EventryMavenPluginIntegrationTest {
             "Compile phase should create classes directory");
 
         // 4. Resources should be copied
-        assertTrue(new File("target/classes/eventry").exists(),
+        assertTrue(new File("target/classes/Eventor").exists(),
             "Resources should be copied to target");
     }
 
@@ -170,7 +170,7 @@ class EventryMavenPluginIntegrationTest {
     @Test
     @DisplayName("Should verify generated files match expected naming conventions")
     void shouldVerifyGeneratedFilesMatchExpectedNamingConventions() {
-        File generatedDir = new File("target/generated-sources/eventry");
+        File generatedDir = new File("target/generated-sources/Eventor");
         File[] files = generatedDir.listFiles();
 
         assertNotNull(files, "Generated directory should contain files");
@@ -204,12 +204,12 @@ class EventryMavenPluginIntegrationTest {
         assertTrue(new File("src/test/java").exists(), "Should have test java directory");
         assertTrue(new File("target").exists(), "Should have target directory");
 
-        // Verify Eventry-specific structure
-        assertTrue(new File("src/main/resources/eventry").exists(),
-            "Should have eventry resources directory");
+        // Verify Eventor-specific structure
+        assertTrue(new File("src/main/resources/Eventor").exists(),
+            "Should have Eventor resources directory");
         assertTrue(new File("target/generated-sources").exists(),
             "Should have generated sources directory");
-        assertTrue(new File("target/generated-sources/eventry").exists(),
-            "Should have eventry generated sources directory");
+        assertTrue(new File("target/generated-sources/Eventor").exists(),
+            "Should have Eventor generated sources directory");
     }
 }

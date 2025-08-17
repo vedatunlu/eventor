@@ -1,4 +1,4 @@
-package io.eventor.model;
+package io.github.vedatunlu.eventor.core.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;

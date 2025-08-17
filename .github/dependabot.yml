@@ -1,0 +1,54 @@
+version: 2
+updates:
+  # Enable version updates for Maven
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "vedatunlu"
+    assignees:
+      - "vedatunlu"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    # Group dependency updates to reduce PR noise
+    groups:
+      spring-boot:
+        patterns:
+          - "org.springframework.boot:*"
+          - "org.springframework:*"
+      testing:
+        patterns:
+          - "*junit*"
+          - "*mockito*"
+          - "*testcontainers*"
+      build-tools:
+        patterns:
+          - "org.apache.maven.plugins:*"
+          - "org.codehaus.mojo:*"
+    # Ignore certain dependencies that should be updated manually
+    ignore:
+      - dependency-name: "org.apache.maven.plugins:maven-gpg-plugin"
+        # GPG plugin updates should be done carefully
+      - dependency-name: "org.sonatype.plugins:nexus-staging-maven-plugin"
+        # Staging plugin updates should be done carefully
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "vedatunlu"
+    assignees:
+      - "vedatunlu"
+    commit-message:
+      prefix: "ci"
+      include: "scope"

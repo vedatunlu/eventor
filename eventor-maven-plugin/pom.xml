@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.eventor</groupId>
+        <groupId>io.github.vedatunlu</groupId>
         <artifactId>eventor-parent</artifactId>
         <version>0.1.0-SNAPSHOT</version>
     </parent>
@@ -20,7 +20,7 @@
     <dependencies>
         <!-- Internal Dependencies -->
         <dependency>
-            <groupId>io.eventor</groupId>
+            <groupId>io.github.vedatunlu</groupId>
             <artifactId>eventor-core</artifactId>
         </dependency>
 

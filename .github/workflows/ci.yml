@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+
+    - name: Build and install Eventor plugin
+      run: mvn clean install -DskipTests
+
+    - name: Run tests
+      run: mvn test
+
+    - name: Test integration example
+      run: |
+        cd integration-example/spring-boot-demo
+        mvn clean compile
+
+    - name: Verify generated code
+      run: |
+        cd integration-example/spring-boot-demo
+        # Check if generated files exist
+        test -f target/generated-sources/eventor/UserRegisteredEvent.java
+        test -f target/generated-sources/eventor/UserEventProducer.java
+        test -f target/generated-sources/eventor/UserEventListener.java
+        echo "✅ All generated files found!"
