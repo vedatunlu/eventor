@@ -1,0 +1,26 @@
+{
+  "type": "consumer",
+  "name": "UserEventListener",
+  "methods": [
+    {
+      "methodName": "handleUserRegisteredEvent",
+      "dto": "UserRegisteredEvent",
+      "topic": "user-events",
+      "groupId": "user-service-group",
+      "listenerFactory": "kafkaListenerContainerFactory",
+      "dependencies": [
+        {
+          "beanName": "userService",
+          "type": "com.example.service.UserService",
+          "methodCalls": ["welcomeNewUser", "setupUserProfile"]
+        },
+        {
+          "beanName": "notificationService",
+          "type": "com.example.service.NotificationService",
+          "methodCalls": ["sendWelcomeEmail"]
+        }
+      ]
+    }
+  ]
+}
+

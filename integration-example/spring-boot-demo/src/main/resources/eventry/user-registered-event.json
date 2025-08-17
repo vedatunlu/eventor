@@ -1,0 +1,12 @@
+{
+  "type": "dto",
+  "name": "UserRegisteredEvent",
+  "fields": {
+    "userId": "UUID",
+    "username": "String",
+    "email": "String",
+    "registrationDate": "LocalDateTime",
+    "isActive": "Boolean"
+  }
+}
+
